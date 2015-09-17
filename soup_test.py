@@ -1,10 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
 
+from utils import to_number
+
 def _extract_total(total_el):
     p_link = total_el.contents[0]
     total_text = p_link.contents[0]
-    return total_text
+    return to_number(total_text)
 
 def _get_page_for_product(slug):
     page_response = requests.get("https://pcpartpicker.com/part/{s}".format(s = slug))
