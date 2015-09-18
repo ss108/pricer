@@ -21,7 +21,7 @@ def price():
         code = request.get_json(force=True)["part_no"]
         return str(get_average_price(code))
     except Exception as ex:
-        return "oh no"
+        return 0
         # return ex.message
 
     # return jsonify(get_average_price(code)) 
