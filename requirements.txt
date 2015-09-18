@@ -1,4 +1,5 @@
 Flask
+flask-cors
 beautifulsoup4
 requests
 pytest==2.7.0
