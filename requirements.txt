@@ -3,4 +3,5 @@ beautifulsoup4
 requests
 pytest==2.7.0
 enum34==1.0.4
+gunicorn
 
