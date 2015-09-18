@@ -19,7 +19,6 @@ def get_average_price(part_no):
 
 def _get_page_for_product(slug):
     url = WEB_ROOT + PART_PATH.format(slug = slug)
-    print url
     page_response = requests.get(url)
     page_text = page_response.text
     page = BeautifulSoup(page_text)
@@ -27,7 +26,8 @@ def _get_page_for_product(slug):
 
 def _extract_prices_from_page(product_page):
     total_table_data = product_page.find_all(attrs = {'class': 'total'}) #TODO: use "base"
-    return [_extract_total(td) for td in total_table_data]
+    prices = [_extract_total(td) for td in total_table_data]
+    return filter(lambda p: p != 0, prices)
 
 def _extract_total(total_el):
     try:
