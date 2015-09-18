@@ -10,15 +10,15 @@ CORS(app)
 def index():
     return "welcome"
 
-# @app.route('/item', methods = ['POST'])
-# def item():
-    # code = request.form.get('code')
-
 @app.route('/price', methods=['POST'])
 def price():
-    code = request.get_json()["part_no"]
-    return str(get_average_price(code))
-    # return jsonify(get_average_price(code)) 
+    try:
+        # return request
+        code = request.get_json(force=True)["part_no"]
+        return str(get_average_price(code))
+    except Exception as ex:
+        return "0"
+
 
 if __name__ == '__main__':
     app.debug = True
