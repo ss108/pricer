@@ -16,8 +16,14 @@ def index():
 
 @app.route('/price', methods=['POST'])
 def price():
-    code = request.get_json()["part_no"]
-    return str(get_average_price(code))
+    try:
+        # return request
+        code = request.get_json(force=True)["part_no"]
+        return str(get_average_price(code))
+    except Exception as ex:
+        return "oh no"
+        # return ex.message
+
     # return jsonify(get_average_price(code)) 
 
 if __name__ == '__main__':
