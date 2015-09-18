@@ -15,7 +15,8 @@ def index():
 @app.route('/price', methods=['POST'])
 def price():
     code = request.get_json()["part_no"]
-    return jsonify(get_average_price(code)) 
+    return str(get_average_price(code))
+    # return jsonify(get_average_price(code)) 
 
 if __name__ == '__main__':
     app.debug = True
