@@ -14,11 +14,19 @@ class PCPartPicker(Source):
         self._search_path = "search/?live=1&qid=1&q={query}"
 
     def _get_part_info(self, part_no):
+        """
+        Makes request to PCPartPicker for basic info about parts that match the query. For our purposes for the time being, we will assume the first result is correct. The only
+        field we are interested in is the "slug"
+        :param part_no:
+        """
         result = requests.get(self._web_root + self._search_path.format(query = part_no))
         result_json = result.json()
-        return {"slug": result_json["results"][0]["slug"]}
+        return {"slug": result_json["results"][0]["slug"]} #TODO: What if no results?
 
     def _get_page_for_product(self, slug):
+        """
+        Returns BeautifulSoup instance of product page for product with given slug.
+        """
         url = self._web_root + self._part_path.format(slug = slug)
         page_response = requests.get(url)
         page_text = page_response.text

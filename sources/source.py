@@ -1,6 +1,9 @@
 import abc
 
 class Source(object):
+    """
+    Maybe make child class like "APISource" or "ScrapeSource"
+    """
     __metaclass__ = abc.ABCMeta
 
     @abc.abstractmethod
