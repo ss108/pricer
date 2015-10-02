@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from flask.ext.cors import CORS
-from pc_pp import get_part_info, get_average_price
 
 app = Flask(__name__)
 CORS(app)
@@ -23,7 +22,11 @@ def index():
 def price():
     try:
         code = request.get_json(force=True)["part_no"]
-
+        cat_no = request.get_json(force=True)["cat_no"]
+        #all sources for category from db
+        #instantiate classes based on info from db
+        #call "calc_average_price" on all of them and average the result
+        #return that
         return str(get_average_price(code))
     except Exception as ex:
         return "0"
