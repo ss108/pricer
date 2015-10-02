@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from utils import to_number
+from utils import to_number, average
 from source import Source
 
 #TODO
@@ -45,6 +45,6 @@ class PCPartPicker(Source):
 
     def calc_average_price(self, part_no):
         prices = self.get_all_prices(part_no)
-        return (sum(prices)/len(prices))
+        return average(prices) 
 
 

@@ -1,5 +1,5 @@
 import pytest
-from utils import to_number
+from utils import to_number, average
 
 @pytest.mark.parametrize("string,expected",[
     ("$56", 56.0),
@@ -8,3 +8,10 @@ from utils import to_number
 ])
 def test_to_number(string, expected):
     assert to_number(string) == expected
+
+@pytest.mark.parametrize("array,expected",[
+    ([6.7, 4, 2, 0], 3.2)
+])
+def test_average(array, expected):
+    assert average(array) == expected 
+    
